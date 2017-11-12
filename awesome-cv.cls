@@ -81,12 +81,15 @@
 % Needed to deal a paragraphs
 \RequirePackage{parskip}
 % Needed to deal hyperlink
-\RequirePackage[hidelinks,unicode]{hyperref}
+%\RequirePackage[hidelinks,unicode]{hyperref}
+\RequirePackage[unicode]{hyperref}
 \hypersetup{%
   pdftitle={},
   pdfauthor={},
   pdfsubject={},
-  pdfkeywords={}
+  pdfkeywords={},
+  colorlinks=true,
+  urlcolor=awesome-red
 }
 
 
@@ -563,8 +566,8 @@
   \end{center}
 }
 % Define an entry of cv information
-% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
-\newcommand*{\cventry}[5]{%
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}{<achievements>}
+\newcommand*{\cventry}[6]{%
   \vspace{-2.0mm}
   \setlength\tabcolsep{0pt}
   \setlength{\extrarowheight}{0pt}
@@ -573,7 +576,9 @@
       {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}\\
+    \multicolumn{2}{L{\textwidth}}{\subentrytitlestyle{Achievements}}\\
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#6}}
   \end{tabular*}%
 }
 
@@ -635,27 +640,13 @@
 % Usage: \cvskill{<type>}{<skillset>}
 \newcommand*{\cvskill}[2]{%
 	\skilltypestyle{#1} & \skillsetstyle{#2} \\
-%    	\multicolumn{2}{L{\textwidth}}{\descriptionstyle{#3}}
 }
-
-%\newcommand*{\cventry}[5]{%
-%  \vspace{-2.0mm}
-%  \setlength\tabcolsep{0pt}
-%  \setlength{\extrarowheight}{0pt}
-%  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
-%    \ifempty{#2#3}
-%      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-%      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
-%      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-%    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
-%  \end{tabular*}%
-%}
 
 % Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{%
   \vspace{-4.0mm}
   \begin{justify}
-  \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+  \begin{itemize}[leftmargin=2ex, nosep, itemsep=5pt]
     \setlength{\parskip}{0pt}
     \renewcommand{\labelitemi}{\bullet}
 }{%
